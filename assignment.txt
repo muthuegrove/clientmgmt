@@ -1,0 +1,18 @@
+
+Design and implement a simple accounting web application using django and postgresql. 
+Requirements:
+1. Should be able to create Clients.
+- Client should have Name, Email, Company info.
+2. Should be able to create projects for a client
+- Project should have Name, technology used, start date, time spent.
+3. Ability to add time spent to a project
+4. Ability to add cost for per hour for a project
+5. Ability to visualize report for each client which should contain:
+- Name of the project
+- Start date
+- Hours spent
+- Cost for the project.
+6. Statistics on the account
+- See a breakdown of project working hours / earnings per week/month/year
+Please share the github link so we can get back to you. 
+
