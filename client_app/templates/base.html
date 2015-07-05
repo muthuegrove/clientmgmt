@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>{% block title %}Client Management{% endblock %}</title>
+
+        <meta charset="utf-8">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% block extra_style %}{% endblock extra_style %}
+    </head>
+
+    <body>
+
+        {% block content %}    {% endblock content %}
+
+        <!--javascript-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <!-- Noty JS Library -->
+        <script type="text/javascript" src="{% static 'js/noty.min.js' %}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                {% if messages %}
+                    {% for message in messages %}
+                        var n = noty({
+                            text: "{{message}}",
+                            type: "{{message.tags}}",
+                            animation: {
+                                open: {height: 'toggle'}, // jQuery animate function property object
+                                close: {height: 'toggle'}, // jQuery animate function property object
+                                easing: 'swing', // easing
+                                speed: 500 // opening & closing animation speed
+                            }
+                        });
+                    {% endfor %}
+                {% endif %}
+            });
+        </script>
+         
+        {% block extra_script %}
+        {% endblock extra_script %}
+    </body>
+</html>
