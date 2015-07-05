@@ -8,16 +8,6 @@ from models import Client
 from forms import ClientCreationForm
 
 
-def client_mgmt(request):
-    '''
-    Client Management Page
-    '''
-
-    client_list = Client.objects.all()
-
-    return render(request, 'clients_management.html',{'client_list': client_list})
-
-
 def create_client(request):
     '''
     Client Management Page
@@ -34,6 +24,6 @@ def create_client(request):
             user.save()
             client = Client.objects.create(user=user, company_info=company_info)
             messages.success(request, 'Client Created successfully.')
-            return HttpResponseRedirect(reverse('client_mgmt'))
+            return HttpResponseRedirect(reverse('create_project'))
 
     return render(request, 'clients_create_form.html',{'form': form})
