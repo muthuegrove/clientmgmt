@@ -5,3 +5,10 @@ ul.errorlist{
 .custom_btn{
     margin-bottom: 10px !important;
 }
+.create-client-link{
+    padding-right: 10px;
+    padding-top: 8px;
+}
+#change_client{
+    width: 20%;
+}
