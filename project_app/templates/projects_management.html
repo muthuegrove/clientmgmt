@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load clientmgmt_tags %}
+
+{% block content %}
+    <h3 class="text-center">Project Management</h3>
+    <a href="{% url 'create_project' %}"><button class="btn btn-info pull-right custom_btn">Create Project</button></a>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <th>Project Name</th>
+            <th>Start Date</th>
+            <th>Hours Spent</th>
+            <th>Cost per Hour</th>
+            <th>Total Cost of Project</th>
+        </thead>
+
+        {% for project in project_list %}
+            <tr>
+                <td>{{project.name}}</td>
+                <td>{{project.start_date}}</td>
+                <td>{{project.time_spent}}</td>
+                <td>{{project.cost_per_hour}}</td>
+                <td>{{project.cost_per_hour|multiply:project.time_spent}}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    
+{% endblock %}

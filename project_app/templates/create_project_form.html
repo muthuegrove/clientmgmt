@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Create Project {% endblock %}
+
+{% block content %}
+    <h3 class="text-center">Project Creation Form</h3>
+    <a href="{% url 'project_mgmt' %}"><button class="btn btn-info pull-right custom_btn">Back To Project Mgmt</button></a>
+
+    <table class="table">
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td><input class="btn btn-primary" type="submit" value="Create Project" /></td>
+            </tr>
+        </form>
+    </table>
+    
+{% endblock %}
