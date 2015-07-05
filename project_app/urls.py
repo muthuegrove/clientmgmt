@@ -19,5 +19,7 @@ from .views import project_mgmt, create_project
 
 urlpatterns = [
     url(r'^$', project_mgmt, name='project_mgmt'),
+    url(r'^(?P<client_id>\d+)/$', project_mgmt, name='project_mgmt'),
     url(r'^create/project/$', create_project, name='create_project'),
+    url(r'^project/(?P<project_id>\d+)/$', create_project, name='edit_project'),
 ]
