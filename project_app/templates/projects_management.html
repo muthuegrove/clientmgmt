@@ -4,6 +4,19 @@
 {% block content %}
     <h3 class="text-center">Project Management</h3>
     <a href="{% url 'create_project' %}"><button class="btn btn-info pull-right custom_btn">Create Project</button></a>
+    <a class="pull-right create-client-link" href="{% url 'create_client' %}">Create Client</a>
+
+    <div>
+        <p class="pull-left"><b>Client:</b></p>
+        <select id="change_client" class="pull-left form-control">
+            {% for client in client_list %}
+                <option class="{{client_id}}-{{client.id}}" value="{{client.id}}" {% if client_id == client.id %}selected="selected"{% endif %}>
+                    {{client}}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
     <table class="table table-striped table-bordered">
         <thead>
             <th>Project Name</th>
@@ -11,6 +24,7 @@
             <th>Hours Spent</th>
             <th>Cost per Hour</th>
             <th>Total Cost of Project</th>
+            <th>Edit</th>
         </thead>
 
         {% for project in project_list %}
@@ -20,9 +34,28 @@
                 <td>{{project.time_spent}}</td>
                 <td>{{project.cost_per_hour}}</td>
                 <td>{{project.cost_per_hour|multiply:project.time_spent}}</td>
+                <td><a href="{% url 'edit_project' project.id %}" class="glyphicon glyphicon-pencil" alt="Edit"></a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">Project not available for this client.</td>
             </tr>
         {% endfor %}
 
     </table>
-    
 {% endblock %}
+
+    {% block extra_script %}
+        <script type="text/javascript">
+            $(document).ready(function(){
+               $('#change_client').change(function(){
+                    client_id = $('#change_client').val();
+                    alert(client_id);
+                    if (client_id==null) {
+                        window.location.href = '/';
+                    }
+                    window.location.href = '/'+client_id;
+               });
+            });
+        </script>
+    {% endblock extra_script %}
